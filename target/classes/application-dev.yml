@@ -1,0 +1,48 @@
+server:
+  compression:
+    enabled: true
+  error:
+    include-exception: true
+    include-stacktrace: always
+    whitelabel:
+      enabled: true
+  tomcat:
+    accesslog:
+      enabled: true
+      directory: logs/
+    basedir: /livinglab/logs/tomcat
+  servlet:
+    context-path: /
+  port: 8080
+spring:
+  datasource-grafana:
+    url: jdbc:mariadb://192.168.100.6:3306/livinglab?serverTimezone=Asia/Seoul&useLegacyDatetimeCode=false
+    username: root
+    password: selab0850
+    driver-class-name: org.mariadb.jdbc.Driver
+
+  jpa:
+    hibernate:
+      jdbc:
+        time_zone: Asia/Seoul
+      ddl-auto: none
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.ProgressDialect
+    show-sql: true
+  thymeleaf:
+    cache: false
+logging:
+  level:
+    org.hibernate.SQL: debug
+    org.apache.tomcat:  info
+    selab.livinglab.test : trace
+  file:
+    name: /test/logs/dev_server.log
+
+imgServerConfig:
+  resources:
+     location: 192.168.100.3:18081/
+     uri_path: /2021_livinglab

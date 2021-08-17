@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="selab.livinglab.test.DAO.GrafanaDAO">
+  	
+<resultMap type="Grafana" id="livinglab">
+  		<id		  column="JeollabukdoId"				    property="JeollabukdoId"/>
+      <result	column="lon"				property="lon"/>
+      <result	column="lat"				property="lat"/>
+      <result	column="DistrictID_DistrictID"				property="DistrictID_DistrictID"/>
+  	</resultMap>
+  	
+    <select id = "findAll" resultType = "Grafana">
+      SELECT * FROM jeollabukdo;
+   </select>
+
+    <select id="findByJeollabukdoId" parameterType="int" resultType="Grafana">
+     SELECT * FROM jeollabukdo WHERE jeollabukdoId = #{jeollabukdoId};
+    </select>
+    
+     <update id="updateJeollabukdoId">
+      update jeollabukdo set
+      where DistrictId_districtID = #{DistrictId_districtID};
+    </update>
+   
+  </mapper>

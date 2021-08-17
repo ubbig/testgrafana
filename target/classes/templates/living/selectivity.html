@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ko-KR" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+<script src="/jquery-1.12.2.min.js"></script>
+</html>
+
+<head>
+    <title>livinglab Heatmap</title>
+    <link rel="stylesheet" href="https://openlayers.org/en/v3.20.1/css/ol.css" type="text/css">
+    <!-- The line below is only needed for old environments like Internet Explorer and Android 4.x -->
+    <script
+        src="https://cdn.polyfill.io/v2/polyfill.min.js?features=requestAnimationFrame,Element.prototype.classList,URL"></script>
+    <script src="https://openlayers.org/en/v3.20.1/build/ol.js"></script>
+</head>
+
+<body>
+    <div id="map" class="map"></div>
+
+    <script type="text/javascript">
+      var baseLayer = new ol.layer.Tile({
+	source: new ol.source.OSM()
+})
+
+var gdeltURL = "../data/test.json"
+
+var gdeltVectorSource = new ol.source.Vector({})
+
+var gdeltLayer = new ol.layer.Vector({
+	source: gdeltVectorSource,
+	visible: false
+});
+
+var geojsonFormat = new ol.format.GeoJSON({
+	dataProjection:"EPSG:3857",
+	featureProjection:'EPSG:3857'
+});
+
+
+$.ajax({
+	type: 'GET',
+	url: gdeltURL,
+	dataType: "json",
+	success: function(data) {
+		var features = geojsonFormat.readFeatures(data, {
+			dataProjection:"EPSG:4326",
+			featureProjection:'EPSG:3857'
+		});
+		gdeltVectorSource.addFeatures(features);
+	}
+});
+
+var baseLayer = new ol.layer.Tile({
+	source: new ol.source.OSM()
+})
+
+//히트맵 그리기 시작
+var heatWeightLayer = new ol.layer.Heatmap({
+	source: gdeltVectorSource,
+	blur: 20,
+	radius: 64,
+	opacity:1.0,
+	weight: function (feature) {
+		// ' 'count'는 0-1의 범위로 정규화
+		var features = gdeltVectorSource.getFeatures();
+		counts = [];
+		for (var i = features.length - 1; i >= 0; i--) {counts.push(features[i].get('count'))}
+		var max = Math.max.apply(Math,counts)
+
+		var normCount = (Math.log(feature.get('count')) / Math.log(max))
+		return(normCount)
+
+	}
+});
+
+
+var scaleLineControl = new ol.control.ScaleLine();
+
+var map = new ol.Map({
+	layers: [baseLayer,heatWeightLayer],
+	target: 'map',
+	controls: ol.control.defaults({
+		attributionOptions: {
+			collapsible: false
+		}
+	}).extend([
+		scaleLineControl
+	]),
+
+	view: new ol.View({
+		projection: 'EPSG:3857',
+		center: [127.0000, 35.7000],
+		center: ol.proj.transform([127.0000, 35.7000], 'EPSG:4326', 'EPSG:3857'),
+		zoom: 9,
+		maxZoom: 15,
+		minZoom: 3
+	})
+})
+
+    </script>
+</body>
+
+</html>

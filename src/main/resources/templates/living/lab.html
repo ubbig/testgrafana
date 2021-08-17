@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko-KR" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+<script src="./jquery-1.12.2.min.js"></script>
+<!-- 합쳐지고 최소화된 최신 CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<!-- 부가적인 테마 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link href="./ol.css" rel="stylesheet" />
+<script src="./ol-debug.js"></script>
+<script src="./ol_v3.js"></script>
+<script src="./plotty_v04.js"></script>
+
+<head>
+  <title>livinglab</title>
+</head>
+
+<body>
+
+  <div class="container-fluid" style="height: 60vh;">
+  
+   
+  <div class="row" id="row">
+    <div class="col-md-4" >
+    <div id="polygonmap" style="height: 500px; z-index: 10;"></div>
+        <button id="base-layer"  class="btn btn-info btn-xs" onclick="baseChange('satellite')" style=" opacity: 70%; background-color: rgb(51, 80, 133);position: relative; margin-top:-70.5em; margin-left: 0.5em; z-index: 10;">지도
+        </button>
+      </div>
+
+      <div class="col-md-4" >
+        <iframe width="600" height="550" src="./living/lab11">
+        </iframe>
+      </div>
+
+      <div class="col-md-4" >
+        <iframe width="600" height="550" src="./living/selectivity">
+        </iframe>
+        
+      </div>
+  </div>
+</div>
+      <script src="./selectMapsByClickOrDraw.js"></script>
+
+
+
+
+</body>
+<script type="text/javascript" th:inline="javascript">
+
+
+ console.log($("#select option:selected").val());
+ $("#select option:selected").val()
+ console.log($("select[name=select]").val());
+ $("select[name=select]").val();
+ console.log($("#select option").index($("#select option:selected")));
+ $("#select option").index($("#select option:selected"));
+
+
+
+
+</script>
+
+
+
+
+</html>

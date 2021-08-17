@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ko-KR" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+
+</html>
+<script src="/jquery-1.12.2.min.js"></script>
+<script src="/ol_v3.js"></script>
+
+<script src="/geotiff_v036.js"></script>
+<script src="/plotty_v04.js"></script>
+
+<body>
+
+    <div id="row">
+        <div id="map" style="height: 500px;"></div>
+    </div>
+
+    <script type="text/javascript" th:inline="javascript">
+
+        /*var set_Lon = 126.5800;
+         var set_Lat = 36.0915;
+         $(document).ready(function () {
+         map_Default_Set(set_Lon , set_Lat);
+         });*/
+
+        /* <![CDATA[ */
+        var jsonarr = /*[[ ${jsonarr} ]]*/;
+        /* ]]> */
+
+        var pnt = new ol.geom.Point(ol.proj.transform([127.0000, 35.7000],
+            'EPSG:4326', 'EPSG:3857'));
+        var korea = pnt.getCoordinates();
+        const geotiffLayer = new ol.layer.Image();
+        layers = new ol.layer.Tile({
+            source: new ol.source.OSM()
+            /*source: new ol.source.XYZ({
+            url: 'http://xdworld.vworld.kr:8080/2d/Base/201802/{z}/{x}/{y}.png'
+            })*/
+        });
+        var myView = new ol.View({
+            center: korea,
+            zoom: 6
+        });
+
+        //뷰 객체를 전역변수로 뺀다.
+        /*var arrindex = 0;
+         $.ajax({
+             url: '../data/ALL_SIGUNGU.json',
+             type: 'get',
+             contentType: 'text',
+             success: function (data) {
+                 var format = new ol.format.GeoJSON({   //포멧할 GeoJSON 객체 생성
+                     featureProjection: 'EPSG:3857'
+                 });
+                 var dobj = JSON.stringify(data);
+                 var djobj = JSON.parse(dobj);
+                 var djobjj = djobj.features;
+                 var tarr = [];
+                 var parsing = format.readFeatures(data);  //읽어온 데이터 파싱
+                 var source = new ol.source.Vector({  //벡터의 구조를 파싱한 데이터로 넣기
+                     features: parsing
+                 });
+                 //console.log(features);
+                 var geoVector = new ol.layer.Vector({ //벡터 레이어 생성
+                     source: source,
+                     style: (feature, resolution) => {
+                         // 모든 지역 이름
+                         let name = feature.values_.adm_nm;
+                         // 선색상
+                         var indcolor = '';
+                         // 선채우기색상
+                         var rgbaco = '';
+                         // 파일 데이터 지역 이름 중 지역 파싱데이터중 있는지 여부확인
+                         //console.log(name);
+                         indcolor = 'rgba( 153, 000, 000 ,1.0)';
+                         rgbaco = 'rgba( 000, 051, 0 ,0.6)';
+     
+                         return new ol.style.Style({
+                             stroke: new ol.style.Stroke({ // 선 스타일
+                                 color: indcolor,
+                                 opacity: 0.1,
+                                 width: 1
+                             }), fill: new ol.style.Fill({  //채우기 스타일
+                                 color: rgbaco,
+                                 opacity: 0.1
+                             }),
+                             text: new ol.style.Text({  //텍스트 스타일
+                                 text: name,
+                                 textAlign: 'center',
+                                 font: '15px roboto,sans-serif'
+                             })
+                         })
+                     }
+                 });*/
+        var map = new ol.Map({
+            target: 'map',
+            layers: [layers, geotiffLayer],
+            view: myView
+        });
+
+
+
+        /*var map = new ol.Map({
+            target: 'map',
+            layers : [layers, geotiffLayer, geoVector],
+            view: myView
+        });
+  },
+});*/
+
+
+        function onGeotiffLoaded(data) {
+            console.log(data);
+            const tiff = GeoTIFF.parse(data);
+            const image = tiff.getImage();
+            const rawBox = image.getBoundingBox();
+            console.log(rawBox);
+            //for some reason, geotiff.js calculates BBOX assuming that origin is the lower-left corner
+            //but at least for gdal_translate-generated raster, it's the upper-left one, so the BBOX has to be adjusted
+            const box = [rawBox[0], rawBox[1] - (rawBox[3] - rawBox[1]), rawBox[2], rawBox[1]];
+            const bands = image.readRasters(); //DEMs are single-band rasters, so band 0 can be hardcoded here
+            let the_canvas = document.createElement('canvas'); //create an offscreen canvas for rendering
+            //calculate the minimal and maximal pixel value of a raster
+            //@FIXME: Math.min.apply doesn't work with arrays of that size - causes RangeError
+            //@FIXME hardcode min/max for now
+            const minValue = 0; // domain default값은 minValue=0, maxValue=1 인데 그렇게 설정하면 제대로 표출되지 않아 지금처럼 수정함 -> 전우현 연구원님께서 확인 중에 계심
+            var maxValue = 0.5;
+            let colorScale = 'greys';
+            if (bands.length == 3) { //흑백 tif파일은 bands.length == 1, RGB tif파일은 bands.length == 3(R,G,B)
+                colorScale = 'earth';
+            }
+            const plot = new plotty.plot({
+                canvas: the_canvas,
+                data: bands[0], width: image.getWidth(), height: image.getHeight(),
+                domain: [minValue, maxValue], clampLow: true, clampHigh: true, colorScale: colorScale
+            });
+            plot.render();
+            const imgSource = new ol.source.ImageStatic({
+                url: the_canvas.toDataURL("image/png"),
+                imageExtent: box,
+                projection: 'EPSG:4326' //to enable on-the-fly raster reprojection
+            })
+            geotiffLayer.setSource(imgSource);
+        };
+
+
+
+        //fetch(base + url).then(response => response.arrayBuffer()).then(onGeotiffLoaded);
+
+        fetch('../img/2021/CanCM4i-rain-20220322-LT09.tif')
+            .then(response => response.arrayBuffer()).then(onGeotiffLoaded);
+
+        console.log('../img/2021/CanCM4i-rain-20220322-LT09.tif');
+
+
+
+
+    </script>
+
+
+
+
+</body>
+
+</html>
