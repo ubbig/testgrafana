@@ -1,0 +1,141 @@
+geo({
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {"location": "coyote_creek" },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.431640625,
+            49.009050809382046
+          ],
+          [
+            -124.27734374999999,
+            44.77793589631623
+          ],
+          [
+            -124.49707031249999,
+            40.68063802521456
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+     "properties": {"location": "coyote_creek" },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -119.5751953125,
+            48.922499263758255
+          ],
+          [
+            -123.662109375,
+            38.92522904714054
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+     "properties": {"location": "coyote_creek" },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -116.05957031249999,
+            48.980216985374994
+          ],
+          [
+            -122.2119140625,
+            37.78808138412046
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {"location": "coyote_creek" },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -114.0380859375,
+            48.980216985374994
+          ],
+          [
+            -119.0478515625,
+            38.238180119798635
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {"location": "coyote_creek" },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -110.9619140625,
+            47.57652571374621
+          ],
+          [
+            -115.57617187499999,
+            40.34654412118006
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {"location": "coyote_creek" },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -107.75390625,
+            47.040182144806664
+          ],
+          [
+            -117.5537109375,
+            35.92464453144099
+          ],
+          [
+            -104.19433593749999,
+            37.47485808497102
+          ],
+          [
+            -107.3583984375,
+            47.07012182383309
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+     "properties": {"location": "coyote_creek" },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -99.140625,
+            46.800059446787316
+          ],
+          [
+            -96.85546875,
+            35.17380831799959
+          ],
+          [
+            -110.21484375,
+            31.952162238024975
+          ]
+        ]
+      }
+    }
+  ]
+}
+    )
