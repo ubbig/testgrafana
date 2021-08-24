@@ -80,7 +80,7 @@ geo({
     },
     {
       "type": "Feature",
-     "properties": {"location": "coyote_creek" },
+     "properties": {"location": "santa_monica" },
       "geometry": {
         "type": "LineString",
         "coordinates": [
@@ -138,7 +138,7 @@ geo({
     },
     {
       "type": "Feature",
-     "properties": {"location": "coyote_creek" },
+     "properties": {"location": "santa_monica" },
       "geometry": {
         "type": "LineString",
         "coordinates": [
