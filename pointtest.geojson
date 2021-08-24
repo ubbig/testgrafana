@@ -1,0 +1,83 @@
+geo({
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {"location": "coyote_creek" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -117.0703125,
+          45.89000815866184
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+     "properties": {"location": "coyote_creek" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -119.35546875000001,
+          43.58039085560784
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {"location": "santa_monica" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -112.587890625,
+          45.02695045318546
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {"location": "coyote_creek" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -115.31249999999999,
+          42.61779143282346
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {"location": "santa_monica" },,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -116.45507812500001,
+          39.095962936305476
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+    "properties": {"location": "coyote_creek" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -107.138671875,
+          40.44694705960048
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+   "properties": {"location": "coyote_creek" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -104.58984375,
+          44.96479793033101
+        ]
+      }
+    }
+  ]
+}
+)
