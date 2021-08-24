@@ -3,7 +3,7 @@ geo({
   "features": [
     {
       "type": "Feature",
-"properties": {"location": "coyote_creek" },
+"properties": {"coyote_creek": "53.6" },
       "geometry": {
         "type": "LineString",
         "coordinates": [
@@ -80,7 +80,7 @@ geo({
     },
     {
       "type": "Feature",
-     "properties": {"location": "santa_monica" },
+     "properties": {"coyote_creek": "46.9" },
       "geometry": {
         "type": "LineString",
         "coordinates": [
@@ -109,7 +109,7 @@ geo({
     },
     {
       "type": "Feature",
-      "properties": {"location": "coyote_creek" },
+      "properties": {"coyote_creek": "47.9" },
       "geometry": {
         "type": "LineString",
         "coordinates": [
@@ -138,7 +138,7 @@ geo({
     },
     {
       "type": "Feature",
-     "properties": {"location": "santa_monica" },
+     "properties": {"coyote_creek": "53.7" },
       "geometry": {
         "type": "LineString",
         "coordinates": [
@@ -187,7 +187,7 @@ geo({
     },
     {
       "type": "Feature",
-     "properties": {"location": "coyote_creek" },
+     "properties": {"coyote_creek": "48.8" },
       "geometry": {
         "type": "LineString",
         "coordinates": [
