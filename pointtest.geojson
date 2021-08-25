@@ -3,7 +3,9 @@ geo({
   "features": [
     {
       "type": "Feature",
-      "properties": {"location": "coyote_creek" },
+      "properties": {
+        "location": "coyote_creek"
+      },
       "geometry": {
         "type": "Point",
         "coordinates": [
@@ -14,7 +16,9 @@ geo({
     },
     {
       "type": "Feature",
-     "properties": {"location": "coyote_creek" },
+      "properties": {
+        "location": "coyote_creek"
+      },
       "geometry": {
         "type": "Point",
         "coordinates": [
@@ -25,7 +29,9 @@ geo({
     },
     {
       "type": "Feature",
-      "properties": {"location": "santa_monica" },
+      "properties": {
+        "location": "santa_monica"
+      },
       "geometry": {
         "type": "Point",
         "coordinates": [
@@ -36,7 +42,9 @@ geo({
     },
     {
       "type": "Feature",
-      "properties": {"location": "coyote_creek" },
+      "properties": {
+        "location": "coyote_creek"
+      },
       "geometry": {
         "type": "Point",
         "coordinates": [
@@ -47,7 +55,9 @@ geo({
     },
     {
       "type": "Feature",
-      "properties": {"location": "santa_monica" },,
+   "properties": {
+        "location": "coyote_creek"
+      },
       "geometry": {
         "type": "Point",
         "coordinates": [
@@ -58,7 +68,7 @@ geo({
     },
     {
       "type": "Feature",
-    "properties": {"location": "coyote_creek" },
+      "properties": {},
       "geometry": {
         "type": "Point",
         "coordinates": [
@@ -69,7 +79,9 @@ geo({
     },
     {
       "type": "Feature",
-   "properties": {"location": "coyote_creek" },
+   "properties": {
+        "location": "coyote_creek"
+      },
       "geometry": {
         "type": "Point",
         "coordinates": [
@@ -77,7 +89,202 @@ geo({
           44.96479793033101
         ]
       }
+    },
+    {
+      "type": "Feature",
+   "properties": {
+        "location": "coyote_creek"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -102.83203125,
+          43.068887774169625
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+   "properties": {
+        "location": "coyote_creek"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.52734374999999,
+          45.767522962149876
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+    "properties": {
+        "location": "coyote_creek"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -96.94335937499999,
+          42.22851735620852
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+   "properties": {
+        "location": "coyote_creek"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.556640625,
+          35.53222622770337
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "location": "coyote_creek"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -102.83203125,
+          34.813803317113155
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+   "properties": {
+        "location": "coyote_creek"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -98.26171875,
+          39.70718665682654
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+   "properties": {
+        "location": "coyote_creek"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -95.09765625,
+          32.32427558887655
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+   "properties": {
+        "location": "coyote_creek"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -94.04296874999999,
+          37.50972584293751
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+   "properties": {
+        "location": "coyote_creek"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.408203125,
+          37.16031654673677
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+   "properties": {
+        "location": "coyote_creek"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.75976562499999,
+          35.53222622770337
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+   "properties": {
+        "location": "coyote_creek"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.890625,
+          32.39851580247402
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+    "properties": {
+        "location": "coyote_creek"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.05859375,
+          42.16340342422401
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+   "properties": {
+        "location": "coyote_creek"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -89.384765625,
+          40.58058466412761
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+       "properties": {
+        "location": "coyote_creek"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -102.216796875,
+          47.57652571374621
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+         "properties": {
+        "location": "coyote_creek"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -95.185546875,
+          48.04870994288686
+        ]
+      }
     }
   ]
 }
-)
+    )
