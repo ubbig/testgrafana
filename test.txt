@@ -1,0 +1,180 @@
+CREATE TABLE IF NOT EXISTS `LivingLab`.`DistrictID` (
+  `DistrictID` INT NOT NULL ,
+  `DistrictName` VARCHAR(15) NOT NULL,
+  PRIMARY KEY (`DistrictID`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `LivingLab`.`JeollaBukdo`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `LivingLab`.`JeollaBukdo` (
+  `JeollabukdoId` INT NOT NULL AUTO_INCREMENT,
+  `lon` VARCHAR(10) NOT NULL,
+  `lat` VARCHAR(10) NOT NULL,
+  `DistrictID_DistrictID` INT NOT NULL,
+  PRIMARY KEY (`JeollabukdoId`),
+  UNIQUE INDEX `JeollabukdoId_UNIQUE` (`JeollabukdoId` ASC) ,
+  INDEX `fk_JeollaBukdo_DistrictID1_idx` (`DistrictID_DistrictID` ASC) ,
+  CONSTRAINT `fk_JeollaBukdo_DistrictID1`
+    FOREIGN KEY (`DistrictID_DistrictID`)
+    REFERENCES `LivingLab`.`DistrictID` (`DistrictID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `LivingLab`.`TodayForecastNaNo`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `LivingLab`.`TodayForecastNaNo` (
+  `TodayForecastId` INT NOT NULL AUTO_INCREMENT,
+  `TodayTime` TIMESTAMP NOT NULL,
+  `DailyAverageTemperature` VARCHAR(45) NOT NULL,
+  `LowestDailyTemperature` VARCHAR(45) NOT NULL,
+  `HighestDailyTemperature` VARCHAR(45) NOT NULL,
+  `DailyTotalOfRainfall` VARCHAR(45) NOT NULL,
+  `RainfallDuration` VARCHAR(45) NOT NULL,
+  `EastWestWindAverage` VARCHAR(45) NOT NULL,
+  `NorthSouthWindAverage` VARCHAR(45) NOT NULL,
+  `JeollaBukdo_JeollabukdoId` INT NOT NULL,
+  PRIMARY KEY (`TodayForecastId`, `JeollaBukdo_JeollabukdoId`),
+  INDEX `fk_TodayForecastNaNo_JeollaBukdo1_idx` (`JeollaBukdo_JeollabukdoId` ASC) ,
+  CONSTRAINT `fk_TodayForecastNaNo_JeollaBukdo1`
+    FOREIGN KEY (`JeollaBukdo_JeollabukdoId`)
+    REFERENCES `LivingLab`.`JeollaBukdo` (`JeollabukdoId`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `LivingLab`.`NanoWeather`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `LivingLab`.`NanoWeather` (
+  `NanoWeatherId` INT NOT NULL AUTO_INCREMENT,
+  `ForecastTime` TIMESTAMP NOT NULL,
+  `DailyAverageTemperature` VARCHAR(45) NOT NULL,
+  `LowestDailyTemperature` VARCHAR(45) NOT NULL,
+  `HighestDailyTemperature` VARCHAR(45) NOT NULL,
+  `DailyTotalOfRainfall` VARCHAR(45) NOT NULL,
+  `RainfallDuration` VARCHAR(45) NOT NULL,
+  `EastWestWindAverage` VARCHAR(45) NOT NULL,
+  `NorthSouthWindAverage` VARCHAR(45) NOT NULL,
+  `CreateDate` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `ModifyDate` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `JeollaBukdo_JeollabukdoId` INT NOT NULL,
+  PRIMARY KEY (`NanoWeatherId`, `JeollaBukdo_JeollabukdoId`),
+  INDEX `fk_NanoWeather_JeollaBukdo1_idx` (`JeollaBukdo_JeollabukdoId` ASC) ,
+  CONSTRAINT `fk_NanoWeather_JeollaBukdo1`
+    FOREIGN KEY (`JeollaBukdo_JeollabukdoId`)
+    REFERENCES `LivingLab`.`JeollaBukdo` (`JeollabukdoId`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `LivingLab`.`NationalCenterforAgroMeteorology`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `LivingLab`.`NationalCenterforAgroMeteorology` (
+  `NationalCenterforAgroMeteorologyId` INT NOT NULL AUTO_INCREMENT,
+  `ForecastTime` TIMESTAMP NOT NULL,
+  `2mHighTemperature` VARCHAR(45) NOT NULL,
+  `EastWestWind` VARCHAR(45) NOT NULL,
+  `NorthSouthWind` VARCHAR(45) NOT NULL,
+  `Insolation` VARCHAR(45) NOT NULL,
+  `2mHeightRelativeHumidity` VARCHAR(45) NOT NULL,
+  `Rain` VARCHAR(45) NOT NULL,
+  `10mDeepSoilMoisture` VARCHAR(45) NOT NULL,
+  `40mDeepSoilMoisture` VARCHAR(45) NOT NULL,
+  `CreateDate` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `ModifyDate` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `JeollaBukdo_JeollabukdoId` INT NOT NULL,
+  PRIMARY KEY (`NationalCenterforAgroMeteorologyId`, `JeollaBukdo_JeollabukdoId`),
+  INDEX `fk_NationalCenterforAgroMeteorology_JeollaBukdo1_idx` (`JeollaBukdo_JeollabukdoId` ASC) ,
+  CONSTRAINT `fk_NationalCenterforAgroMeteorology_JeollaBukdo1`
+    FOREIGN KEY (`JeollaBukdo_JeollabukdoId`)
+    REFERENCES `LivingLab`.`JeollaBukdo` (`JeollabukdoId`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `LivingLab`.`IntegratedWatershedManagementInstitute`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `LivingLab`.`IntegratedWatershedManagementInstitute` (
+  `IntegratedWatershedId` INT NOT NULL AUTO_INCREMENT,
+  `ForecastTime` TIMESTAMP NOT NULL,
+  `HighestDailyTemperature` VARCHAR(45) NOT NULL,
+  `LowestDailyTemperature` VARCHAR(45) NOT NULL,
+  `CreateDate` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `ModifyDate` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `JeollaBukdo_JeollabukdoId` INT NOT NULL,
+  PRIMARY KEY (`IntegratedWatershedId`, `JeollaBukdo_JeollabukdoId`),
+  INDEX `fk_IntegratedWatershedManagementInstitute_JeollaBukdo1_idx` (`JeollaBukdo_JeollabukdoId` ASC) ,
+  CONSTRAINT `fk_IntegratedWatershedManagementInstitute_JeollaBukdo1`
+    FOREIGN KEY (`JeollaBukdo_JeollabukdoId`)
+    REFERENCES `LivingLab`.`JeollaBukdo` (`JeollabukdoId`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `LivingLab`.`TodayForecastNational`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `LivingLab`.`TodayForecastNational` (
+  `TodayForecastNationalId` INT NOT NULL AUTO_INCREMENT,
+  `TodayTime` TIMESTAMP NOT NULL,
+  `2mHighTemperature` VARCHAR(45) NOT NULL,
+  `EastWestWind` VARCHAR(45) NOT NULL,
+  `NorthWestWind` VARCHAR(45) NOT NULL,
+  `Insolation` VARCHAR(45) NOT NULL,
+  `2mHeightRelativeHumidity` VARCHAR(45) NOT NULL,
+  `Rain` VARCHAR(45) NOT NULL,
+  `10mDeepSoilMoisture` VARCHAR(45) NOT NULL,
+  `40mDeepSoilMoisture` VARCHAR(45) NOT NULL,
+  `JeollaBukdo_JeollabukdoId` INT NOT NULL,
+  PRIMARY KEY (`TodayForecastNationalId`, `JeollaBukdo_JeollabukdoId`),
+  INDEX `fk_TodayForecastNational_JeollaBukdo1_idx` (`JeollaBukdo_JeollabukdoId` ASC) ,
+  CONSTRAINT `fk_TodayForecastNational_JeollaBukdo1`
+    FOREIGN KEY (`JeollaBukdo_JeollabukdoId`)
+    REFERENCES `LivingLab`.`JeollaBukdo` (`JeollabukdoId`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `LivingLab`.`TodayForecastWatershed`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `LivingLab`.`TodayForecastWatershed` (
+  `TodayforecastWatershedId` INT NOT NULL AUTO_INCREMENT,
+  `TodayTime` TIMESTAMP NOT NULL,
+  `HighestDailyTemperature` VARCHAR(45) NOT NULL,
+  `LowestDailyTemperature` VARCHAR(45) NOT NULL,
+  `JeollaBukdo_JeollabukdoId` INT NOT NULL,
+  PRIMARY KEY (`TodayforecastWatershedId`, `JeollaBukdo_JeollabukdoId`),
+  INDEX `fk_TodayForecastWatershed_JeollaBukdo1_idx` (`JeollaBukdo_JeollabukdoId` ASC) ,
+  CONSTRAINT `fk_TodayForecastWatershed_JeollaBukdo1`
+    FOREIGN KEY (`JeollaBukdo_JeollabukdoId`)
+    REFERENCES `LivingLab`.`JeollaBukdo` (`JeollabukdoId`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+
+
+
+
+
+
+
+
+
+
+
+**** 영동시장 반대편
